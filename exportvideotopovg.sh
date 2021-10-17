@@ -1,6 +1,6 @@
 #!/bin/bash
 touch /home/pi/scripts/exportrunning
-echo "Started processing" $1
+echo "Started processing" $1 $2
 rm /home/pi/scripts/exportcompleted
 latestdirectory=$(ls /home/pi/RMS_data/CapturedFiles/ | tail -n$1 | head -n1)
 the_date=$(ls /home/pi/RMS_data/CapturedFiles/ | tail -n$1 | head -n1 | cut -d "_" -f 2)

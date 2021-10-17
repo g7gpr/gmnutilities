@@ -29,12 +29,12 @@ ffmpeg -i /home/pi/RMS_data/CapturedFiles/$latestdirectory/AU000A_latest.mp4 -i 
 rm /home/pi/RMS_data/CapturedFiles/$latestdirectory/AU000A_latest.mp4
 rm /home/pi/RMS_data/CapturedFiles/$latestdirectory/detections.mp4
 rm /home/pi/RMS_data/CapturedFiles/$latestdirectory/FF*.mp4
-rm "/home/pi/RMS_data/CapturedFiles/AU000A_"$the_date"_detections.mp4"
+rm "/home/pi/RMS_data/CapturedFiles/$latestdirectory/AU000A_"$the_date"_detections.mp4"
 echo "Make upload"
-cp /home/pi/RMS_data/CapturedFiles/$latestdirectory/AU000A_combined.mp4 "/home/pi/RMS_data/CapturedFiles/$latestdirectory/AU000A_"$thedate"_combined.mp4"
+cp "/home/pi/RMS_data/CapturedFiles/"$latestdirectory"/AU000A_combined.mp4" "/home/pi/RMS_data/CapturedFiles/"$latestdirectory"/AU000A_"$the_date"_combined.mp4"
 sshpass -p $2 scp /home/pi/RMS_data/CapturedFiles/$latestdirectory/AU000A_combined.mp4 gmn@192.168.1.230:/home/gmn/Dropbox/AU000A
 rm /home/pi/RMS_data/CapturedFiles/$latestdirectory/AU000A_combined.mp4
-sshpass -p $2 scp "/home/pi/RMS_data/CapturedFiles/$latestdirectory/AU000A_"$the_date"_combined.mp4" gmn@192.168.1.230:/home/gmn/Dropbox/AU000A/archives
+sshpass -p $2 scp "/home/pi/RMS_data/CapturedFiles/"$latestdirectory"/AU000A_"$the_date"_combined.mp4" gmn@192.168.1.230:/home/gmn/Dropbox/AU000A/archives
 echo "The latest observation from AU000A has been uploaded to the server." | mail -s "AU000A - latest observation uploaded" g7gpr@outlook.com 
 rm "/home/pi/RMS_data/CapturedFiles/$latestdirectory/AU000A_"$the_date"_combined.mp4"
 touch /home/pi/scripts/exportcompleted

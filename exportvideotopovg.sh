@@ -1,9 +1,9 @@
 #!/bin/bash
-touch /home/pi/scripts/exportrunning
 echo "Started processing" $1 $2
-rm /home/pi/scripts/exportcompleted
 latestdirectory=$(ls /home/pi/RMS_data/CapturedFiles/ | tail -n$1 | head -n1)
 the_date=$(ls /home/pi/RMS_data/CapturedFiles/ | tail -n$1 | head -n1 | cut -d "_" -f 2)
+touch "/home/pi/scripts/"$the_date"_exportrunning"
+rm "/home/pi/scripts/"$the_date"_exportcompleted"
 echo "AU000A has started preparing the compilation video for " $the_date "." | mail -s "AU000A - Started compilation" g7gpr@outlook.com
 echo "Observation date was :" $the_date
 echo "Latest directory for working is  :"  $latestdirectory
@@ -37,5 +37,5 @@ rm /home/pi/RMS_data/CapturedFiles/$latestdirectory/AU000A_combined.mp4
 sshpass -p $2 scp "/home/pi/RMS_data/CapturedFiles/"$latestdirectory"/AU000A_"$the_date"_combined.mp4" gmn@192.168.1.230:/home/gmn/Dropbox/AU000A/archives
 echo "The latest observation from AU000A has been uploaded to the server." | mail -s "AU000A - latest observation uploaded" g7gpr@outlook.com 
 rm "/home/pi/RMS_data/CapturedFiles/$latestdirectory/AU000A_"$the_date"_combined.mp4"
-touch /home/pi/scripts/exportcompleted
-rm /home/pi/scripts/exportrunning
+touch "/home/pi/scripts/"$the_date"_exportcompleted"
+rm "/home/pi/scripts/"$the_date"_exportrunning"
